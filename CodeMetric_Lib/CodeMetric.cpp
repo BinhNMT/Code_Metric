@@ -1,8 +1,9 @@
 /*
- * C_Metric_Lib.cpp
+ * CodeMetric.cpp
  *
  *  Created on: Apr 11, 2020
  *      Author: BinhNMT
+ *      Email: binhmainguyen193@gmail.com
  */
 
 #include <iostream>
@@ -10,7 +11,10 @@
 #include "CodeMetric.h"
 using namespace C_M;
 
-CodeMetric::CodeMetric(): elocs(0), locs(0), totalLines(0) {}
+CodeMetric::CodeMetric(): elocs(0), totalLocs(0) 
+{
+    setFlagToDefault();
+}
 
 bool CodeMetric::checkEmptyLine(string codeString)
 {
@@ -29,9 +33,7 @@ bool CodeMetric::checkEmptyLine(string codeString)
 
 void CodeMetric::countingElocs(string sourcePath)
 {
-    int pos;
     unsigned int cmt = 0, empty = 0;
-    bool isCmt, isEmpty;
     string singleLine;
     fstream sourceFile;
     
@@ -40,39 +42,23 @@ void CodeMetric::countingElocs(string sourcePath)
     /* Read line by line code in source file */
     while (!sourceFile.eof())
     {
-        isCmt = false;
-        isEmpty = false;
-
         getline(sourceFile, singleLine);
-        pos = singleLine.find("/");
-        
-        /* The case that doubt has comments code */
-        if(pos > -1)
-        {
-            isCmt = checkCmtCode(pos, singleLine);
             
-            if(isCmt)
-            {
-                cmt++;
-            }
-        }
-
-        /* Check whether empty line or not */
-        else
+        if(checkCmtCode(singleLine))
         {
-            isEmpty = checkEmptyLine(singleLine);
-
-            if(isEmpty)
-            {
-                empty++;
-            }
+            cmt++;
         }
 
-        totalLines++;
+        else if(checkEmptyLine(singleLine))
+        {
+            empty++;
+        }
+
+        totalLocs++;
     }
 
     /* counting effect LoCs */
-    elocs = totalLines - cmt - empty;
+    elocs = totalLocs - cmt - empty;
 
     sourceFile.close();
 }
@@ -84,10 +70,5 @@ unsigned int CodeMetric::getElocs(void)
 
 unsigned int CodeMetric::getLocs(void)
 {
-    return locs;
-}
-
-unsigned int CodeMetric::getLines(void)
-{
-    return totalLines;
+    return totalLocs;
 }

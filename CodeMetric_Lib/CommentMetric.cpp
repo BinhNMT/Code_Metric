@@ -3,6 +3,7 @@
  *
  *  Created on: Apr 15, 2020
  *      Author: BinhNMT
+ *      Email: binhmainguyen193@gmail.com
  */
 
 #include <iostream>
@@ -10,76 +11,80 @@
 #include "CodeMetric.h"
 using namespace C_M;
 
-unsigned int CommentMetric::verifyComment(int pos, string codeString)
-{
-    // Check whether it is a twin slash comment or not
-    if(codeString[pos + 1] == '/')
-    {
-        return SLASHCMT;
-    }
-
-    // Check whether it is a block comment or not
-    else if(codeString[pos + 1] == '*')
-    {
-        return BLOCKCMT;
-    }
-    
-    return NOTCMT;
-}
-
 bool CommentMetric::checkTwinSlashCmt(int pos, string codeString)
 {
-    unsigned int notComment = 0;
-    
     if(pos == 0)
     {
-        return true;
+        return ISCMT;
     }
 
-    // Check whether exist available code before the commented text or not
+    // Check whether exist available code before the commented text
     else if(pos > 0)
     {
         for(int i = 0; i < pos; i++)
         {
             if(codeString[i] != '\t' && codeString[i] != ' ')
             {
-                notComment++;
+                return NOTCMT;
             }
-        }
-
-        if(notComment)
-        {
-            return false;
         }
     }
     
-    return true;
+    return ISCMT;
 }
 
 bool CommentMetric::checkBlockCmt(int pos, string codeString)
 {
-    // Not implemented yet
-    // @default: return false
-    return false;
+    blockCmt = true;
+    
+    // Check the presence of finish character of block comments 
+    if ((int)codeString.find("*/") != -1)
+    {
+        blockCmt = false;
+    }
+
+    if (pos == 0)
+    {
+        return ISCMT;
+    }
+
+    // Check whether exist available code before the commented text
+    else if (pos > 0)
+    {
+        for(int i = 0; i < pos; i++)
+        {
+            if(codeString[i] != '\t' && codeString[i] != ' ')
+            {
+                return NOTCMT;
+            }
+        }
+    }
+    
+    return ISCMT;
 }
 
-bool CommentMetric::checkCmtCode(int pos, string codeString)
+void CommentMetric::setFlagToDefault(void)
 {
-    unsigned int verify;
-    verify = verifyComment(pos, codeString);
+    blockCmt = false;
+}
 
-    if(verify == 0)
-    {
-        return false;
-    }
+bool CommentMetric::checkCmtCode(string codeString)
+{
+    int pos;
 
-    else if(verify == SLASHCMT)
-    {
-        return checkTwinSlashCmt(pos, codeString);
-    }
-
-    else
+    // Check whether it is a block of comments
+    pos = codeString.find("/*");
+    if(pos > -1 || blockCmt == true)
     {
         return checkBlockCmt(pos, codeString);
     }
+
+    // Check whether it is a twin slash comment
+    pos = codeString.find("//");
+    if(pos > -1)
+    {
+        return checkTwinSlashCmt(pos, codeString);
+    }
+    
+    return NOTCMT;
 }

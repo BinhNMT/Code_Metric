@@ -3,6 +3,7 @@
  *
  *  Created on: Apr 11, 2020
  *      Author: BinhNMT
+ *      Email: binhmainguyen193@gmail.com
  */
 
 #ifndef CODEMETRIC_H_
@@ -12,22 +13,19 @@
 using namespace std;
 
 #define NOTCMT      0
-#define SLASHCMT    1
-#define BLOCKCMT    2
+#define ISCMT       1
+#define BLOCK       2
 
 namespace C_M
 {
     class CommentMetric 
     {
         private:
-            // @brief  : Verify the doubt code is a comment or not
-            // @param  : pos        - position of slash was detected
-            //           codeString - a line of input source code
-            // @return : NOTCMT     - not a comment code
-            //           SLASHCMT   - a commented code with twin slash type
-            //           BLOCKCMT   - a commented code with block comment type
-            unsigned int verifyComment(int, string);
-            
+            // @brief  : a flag that used to notice in a block comments
+            // @detail : - True in case of in a block comments
+            //         : - False in case of not in a block comments
+            bool blockCmt;
+
             // @brief  : Verify the doubt code is a comment with twin slash type or not
             // @param  : pos        - position of slash was detected
             //           codeString - a line of input source code
@@ -43,12 +41,16 @@ namespace C_M
             bool checkBlockCmt(int, string);
     
         public:
+            // @brief  : set the default value for blockCmt flag is zero
+            void setFlagToDefault(void);
+
             // @brief  : Verify the doubt code is a comment or not
             // @param  : pos        - position of slash was detected
             //           codeString - a line of input source code
-            // @return : true       - commented code
-            //           fasle      - not a commented code
-            bool checkCmtCode(int, string);
+            // @return : 0       - not a commented code
+            //           1       - commented code
+            //           2       - block commented code
+            bool checkCmtCode(string);
     };
 
     class CodeMetric: public CommentMetric
@@ -56,7 +58,7 @@ namespace C_M
         private:
             /* properties */
             unsigned int elocs;
-            unsigned int locs;
+            unsigned int totalLocs;
             unsigned int totalLines;
 
             // @brief   : counting number of effect LOCs
@@ -77,13 +79,28 @@ namespace C_M
             // @return  : number of effect loCs
             unsigned int getElocs(void);
             
-            // @brief   : get exist Line of Code values
+            // @brief   : get total exist Line of Code values
             // @return  : number of exist loCs
             unsigned int getLocs(void);
+    };
+
+    class EffortMetric
+    {
+        private:
+            float manday;
+
+        public:
+            /* class constructor */
+            EffortMetric();
+
+            // @brief   : do estimating effort (manday)
+            // @param   : - elocs per day
+            //            - total elocs
+            void estimateEffort(unsigned int, unsigned int);
             
-            // @brief   : get total Line of Code values
-            // @return  : number of total loCs
-            unsigned int getLines(void);
+            // @brief   : get effort estimated result (manday value)
+            // @return  : total effort (manday)
+            float getManday();
     };
 }
 

@@ -53,19 +53,23 @@ namespace C_M
             bool checkCmtCode(string);
     };
 
-    class CodeMetric: public CommentMetric
+    class NullLineMetric
+    {
+        public:
+            // @brief   : counting number of effect LOCs
+            // @param   : a line of input source code
+            // @return : true       - empty line
+            //           fasle      - not an empty line
+            bool checkEmptyLine(string);
+    };
+
+    class CodeMetric: public CommentMetric, public NullLineMetric
     {
         private:
             /* properties */
             unsigned int elocs;
             unsigned int totalLocs;
             unsigned int totalLines;
-
-            // @brief   : counting number of effect LOCs
-            // @param   : a line of input source code
-            // @return : true       - empty line
-            //           fasle      - not an empty line
-            bool checkEmptyLine(string);
         
         public:
             /* class constructor */

@@ -16,34 +16,19 @@ CodeMetric::CodeMetric(): elocs(0), totalLocs(0)
     setFlagToDefault();
 }
 
-bool CodeMetric::checkEmptyLine(string codeString)
-{
-    int length = codeString.length();
-
-    if (length == 0)
-    {
-        return true;
-    }
-    
-    else
-    {
-        return false;
-    }
-}
-
 void CodeMetric::countingElocs(string sourcePath)
 {
     unsigned int cmt = 0, empty = 0;
     string singleLine;
     fstream sourceFile;
-    
+
     sourceFile.open(sourcePath, ios::in);
 
     /* Read line by line code in source file */
     while (!sourceFile.eof())
     {
         getline(sourceFile, singleLine);
-            
+
         if(checkCmtCode(singleLine))
         {
             cmt++;

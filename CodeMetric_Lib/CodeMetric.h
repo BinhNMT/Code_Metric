@@ -87,25 +87,6 @@ namespace C_M
             // @return  : number of exist loCs
             unsigned int getLocs(void);
     };
-
-    class EffortMetric
-    {
-        private:
-            float manday;
-
-        public:
-            /* class constructor */
-            EffortMetric();
-
-            // @brief   : do estimating effort (manday)
-            // @param   : - elocs per day
-            //            - total elocs
-            void estimateEffort(unsigned int, unsigned int);
-            
-            // @brief   : get effort estimated result (manday value)
-            // @return  : total effort (manday)
-            float getManday();
-    };
 }
 
 #endif /* CodeMETRIC_H_ */

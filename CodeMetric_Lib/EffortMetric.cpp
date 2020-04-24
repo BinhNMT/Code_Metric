@@ -7,7 +7,7 @@
  */
 
 #include <iostream>
-#include "CodeMetric.h"
+#include "EffortMetric.h"
 using namespace C_M;
 
 EffortMetric::EffortMetric(): manday(0) {}

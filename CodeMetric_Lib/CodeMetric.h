@@ -5,10 +5,8 @@
  *      Author: BinhNMT
  *      Email: binhmainguyen193@gmail.com
  */
-
-#ifndef CODEMETRIC_H_
-#define CODEMETRIC_H_
-
+#ifndef CODEMETRIC_H
+#define CODEMETRIC_H
 #include <string>
 using namespace std;
 
@@ -18,7 +16,7 @@ using namespace std;
 
 namespace C_M
 {
-    class CommentMetric 
+    class CommentMetric
     {
         private:
             // @brief  : a flag that used to notice in a block comments
@@ -32,14 +30,14 @@ namespace C_M
             // @return : true       - commented code
             //           fasle      - not a commented code
             bool checkTwinSlashCmt(int, string);
-            
+
             // @brief  : Verify the doubt code is a comment with block comment type or not
             // @param  : pos        - position of slash was detected
             //           codeString - a line of input source code
             // @return : true       - commented code
             //           fasle      - not a commented code
             bool checkBlockCmt(int, string);
-    
+
         public:
             // @brief  : set the default value for blockCmt flag is zero
             void setFlagToDefault(void);
@@ -53,24 +51,20 @@ namespace C_M
             bool checkCmtCode(string);
     };
 
-    class NullLineMetric
-    {
-        public:
-            // @brief   : counting number of effect LOCs
-            // @param   : a line of input source code
-            // @return : true       - empty line
-            //           fasle      - not an empty line
-            bool checkEmptyLine(string);
-    };
-
-    class CodeMetric: public CommentMetric, public NullLineMetric
+    class CodeMetric: public CommentMetric
     {
         private:
             /* properties */
             unsigned int elocs;
             unsigned int totalLocs;
             unsigned int totalLines;
-        
+
+            // @brief   : counting number of effect LOCs
+            // @param   : a line of input source code
+            // @return : true       - empty line
+            //           fasle      - not an empty line
+            bool checkEmptyLine(string);
+
         public:
             /* class constructor */
             CodeMetric();
@@ -82,11 +76,29 @@ namespace C_M
             // @brief   : get effected Line of Code values
             // @return  : number of effect loCs
             unsigned int getElocs(void);
-            
+
             // @brief   : get total exist Line of Code values
             // @return  : number of exist loCs
             unsigned int getLocs(void);
     };
-}
 
-#endif /* CodeMETRIC_H_ */
+    class EffortMetric
+    {
+        private:
+            float manday;
+
+        public:
+            /* class constructor */
+            EffortMetric();
+
+            // @brief   : do estimating effort (manday)
+            // @param   : - elocs per day
+            //            - total elocs
+            void estimateEffort(unsigned int, unsigned int);
+
+            // @brief   : get effort estimated result (manday value)
+            // @return  : total effort (manday)
+            float getManday();
+    };
+}
+#endif // CODEMETRIC_H

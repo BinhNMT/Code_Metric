@@ -29,15 +29,15 @@ bool CommentMetric::checkTwinSlashCmt(int pos, string codeString)
             }
         }
     }
-    
+
     return ISCMT;
 }
 
 bool CommentMetric::checkBlockCmt(int pos, string codeString)
 {
     blockCmt = true;
-    
-    // Check the presence of finish character of block comments 
+
+    // Check the presence of finish character of block comments
     if ((int)codeString.find("*/") != -1)
     {
         blockCmt = false;
@@ -59,7 +59,7 @@ bool CommentMetric::checkBlockCmt(int pos, string codeString)
             }
         }
     }
-    
+
     return ISCMT;
 }
 
@@ -85,6 +85,6 @@ bool CommentMetric::checkCmtCode(string codeString)
     {
         return checkTwinSlashCmt(pos, codeString);
     }
-    
+
     return NOTCMT;
 }

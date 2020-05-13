@@ -6,14 +6,28 @@
  *      Email: binhmainguyen193@gmail.com
  */
 
-#include <iostream>
 #include <fstream>
 #include "CodeMetric.h"
 using namespace C_M;
 
-CodeMetric::CodeMetric(): elocs(0), totalLocs(0) 
+CodeMetric::CodeMetric(): elocs(0), totalLocs(0)
 {
     setFlagToDefault();
+}
+
+bool CodeMetric::checkEmptyLine(string codeString)
+{
+    int length = codeString.length();
+
+    if (length == 0)
+    {
+        return true;
+    }
+
+    else
+    {
+        return false;
+    }
 }
 
 void CodeMetric::countingElocs(string sourcePath)

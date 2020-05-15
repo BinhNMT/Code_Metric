@@ -7,11 +7,10 @@
  */
 
 #include <iostream>
-#include <string.h>
+#include "CommentMetric.h"
 #include "CodeMetric.h"
-using namespace C_M;
 
-bool CommentMetric::checkTwinSlashCmt(int pos, string codeString)
+bool C_M::CommentMetric::checkTwinSlashCmt(int pos, string codeString)
 {
     if(pos == 0)
     {
@@ -33,7 +32,7 @@ bool CommentMetric::checkTwinSlashCmt(int pos, string codeString)
     return ISCMT;
 }
 
-bool CommentMetric::checkBlockCmt(int pos, string codeString)
+bool C_M::CommentMetric::checkBlockCmt(int pos, string codeString)
 {
     blockCmt = true;
 
@@ -63,12 +62,12 @@ bool CommentMetric::checkBlockCmt(int pos, string codeString)
     return ISCMT;
 }
 
-void CommentMetric::setFlagToDefault(void)
+void C_M::CommentMetric::setFlagToDefault(void)
 {
     blockCmt = false;
 }
 
-bool CommentMetric::checkCmtCode(string codeString)
+bool C_M::CommentMetric::checkCmtCode(string codeString)
 {
     int pos;
 

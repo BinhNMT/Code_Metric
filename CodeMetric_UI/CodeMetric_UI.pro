@@ -19,16 +19,20 @@ SOURCES += \
     CodeMetric.cpp \
     CommentMetric.cpp \
     EffortMetric.cpp \
+    NullLineMetric.cpp \
+    OperatingMode.cpp \
     WorkWithTable.cpp \
     main.cpp \
-    mainwindow.cpp \
-    operatingmode.cpp
+    mainwindow.cpp
 
 HEADERS += \
     CodeMetric.h \
+    CommentMetric.h \
+    EffortMetric.h \
+    NullLineMetric.h \
+    OperatingMode.h \
     WorkWithTable.h \
-    mainwindow.h \
-    operatingmode.h
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui

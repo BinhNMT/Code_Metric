@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "CodeMetric.h"
 #include "WorkWithTable.h"
-#include "operatingmode.h"
+#include "OperatingMode.h"
 #include <QFileDialog>
 #include <QComboBox>
 
@@ -45,7 +45,7 @@ void MainWindow::on_pushButton_2_clicked()
     QString operationMode = ui->comboBox->currentText();
 
     // Main tasking
-    OperatingMode Operate(this);
+    C_M::OperatingMode Operate(this);
 
     if(operationMode == "Single")
     {

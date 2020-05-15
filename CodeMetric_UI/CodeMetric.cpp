@@ -8,29 +8,13 @@
 
 #include <fstream>
 #include "CodeMetric.h"
-using namespace C_M;
 
-CodeMetric::CodeMetric(): elocs(0), totalLocs(0)
+C_M::CodeMetric::CodeMetric(): elocs(0), totalLocs(0)
 {
     setFlagToDefault();
 }
 
-bool CodeMetric::checkEmptyLine(string codeString)
-{
-    int length = codeString.length();
-
-    if (length == 0)
-    {
-        return true;
-    }
-
-    else
-    {
-        return false;
-    }
-}
-
-void CodeMetric::countingElocs(string sourcePath)
+void C_M::CodeMetric::countingElocs(string sourcePath)
 {
     unsigned int cmt = 0, empty = 0;
     string singleLine;
@@ -62,12 +46,12 @@ void CodeMetric::countingElocs(string sourcePath)
     sourceFile.close();
 }
 
-unsigned int CodeMetric::getElocs(void)
+unsigned int C_M::CodeMetric::getElocs(void)
 {
     return elocs;
 }
 
-unsigned int CodeMetric::getLocs(void)
+unsigned int C_M::CodeMetric::getLocs(void)
 {
     return totalLocs;
 }

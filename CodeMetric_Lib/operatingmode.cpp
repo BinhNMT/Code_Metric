@@ -1,15 +1,23 @@
-#include "operatingmode.h"
+/*
+ * OperatingMode.cpp
+ *
+ *  Created on: Apr 11, 2020
+ *      Author: BinhNMT
+ *      Email: binhmainguyen193@gmail.com
+ */
+#include "OperatingMode.h"
 #include "ui_mainwindow.h"
 #include "CodeMetric.h"
 #include "WorkWithTable.h"
+#include "EffortMetric.h"
 #include <fstream>
 
-OperatingMode::OperatingMode(MainWindow *Obj)
+C_M::OperatingMode::OperatingMode(MainWindow *Obj)
 {
     PtrObj = Obj;
 }
 
-float OperatingMode::singleFileExecution(QString inputFile, unsigned int stdEffort, unsigned int rowNumber)
+float C_M::OperatingMode::singleFileExecution(QString inputFile, unsigned int stdEffort, unsigned int rowNumber)
 {
     C_M::CodeMetric codeObject;
     C_M::EffortMetric effordObj;
@@ -42,7 +50,7 @@ float OperatingMode::singleFileExecution(QString inputFile, unsigned int stdEffo
     return totalEffor;
 }
 
-float OperatingMode::multiFileMode(QString listFilesInput, unsigned int stdEffort)
+float C_M::OperatingMode::multiFileMode(QString listFilesInput, unsigned int stdEffort)
 {
     fstream filesList;
     string filePath;

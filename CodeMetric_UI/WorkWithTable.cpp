@@ -1,3 +1,10 @@
+/*
+ * WorkWithTable.cpp
+ *
+ *  Created on: Apr 11, 2020
+ *      Author: BinhNMT
+ *      Email: binhmainguyen193@gmail.com
+ */
 #include "mainwindow.h"
 #include "WorkWithTable.h"
 #include "ui_mainwindow.h"

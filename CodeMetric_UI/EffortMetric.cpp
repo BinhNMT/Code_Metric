@@ -7,17 +7,16 @@
  */
 
 #include <iostream>
-#include "CodeMetric.h"
-using namespace C_M;
+#include "EffortMetric.h"
 
-EffortMetric::EffortMetric(): manday(0) {}
+C_M::EffortMetric::EffortMetric(): manday(0) {}
 
-void EffortMetric::estimateEffort(unsigned int effortPerDay = 0, unsigned int eLocs = 0)
+void C_M::EffortMetric::estimateEffort(unsigned int effortPerDay = 0, unsigned int eLocs = 0)
 {
     manday = ((float)eLocs / (float)effortPerDay);
 }
 
-float EffortMetric::getManday()
+float C_M::EffortMetric::getManday()
 {
     return manday;
 }

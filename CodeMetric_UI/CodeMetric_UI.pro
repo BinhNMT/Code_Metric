@@ -16,21 +16,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    CodeMetric.cpp \
-    CommentMetric.cpp \
-    EffortMetric.cpp \
-    NullLineMetric.cpp \
-    OperatingMode.cpp \
+    ../CodeMetric_Lib/src/CodeMetric.cpp \
+    ../CodeMetric_Lib/src/CommentMetric.cpp \
+    ../CodeMetric_Lib/src/EffortMetric.cpp \
+    ../CodeMetric_Lib/src/NullLineMetric.cpp \
+    ../CodeMetric_Lib/src/OperatingMode.cpp \
     WorkWithTable.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
-    CodeMetric.h \
-    CommentMetric.h \
-    EffortMetric.h \
-    NullLineMetric.h \
-    OperatingMode.h \
+    ../CodeMetric_Lib/src/CodeMetric.h \
+    ../CodeMetric_Lib/src/CommentMetric.h \
+    ../CodeMetric_Lib/src/EffortMetric.h \
+    ../CodeMetric_Lib/src/NullLineMetric.h \
+    ../CodeMetric_Lib/src/OperatingMode.h \
     WorkWithTable.h \
     mainwindow.h
 

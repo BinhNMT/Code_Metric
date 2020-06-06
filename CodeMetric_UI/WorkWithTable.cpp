@@ -9,9 +9,10 @@
 #include "WorkWithTable.h"
 #include "ui_mainwindow.h"
 
-WorkWithTable::WorkWithTable(MainWindow *Obj)
+WorkWithTable::WorkWithTable(MainWindow *Obj, unsigned int rowNumber)
 {
     PtrObj = Obj;
+    createTable(rowNumber);
 }
 
 

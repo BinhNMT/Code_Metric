@@ -13,9 +13,12 @@
 #include "NullLineMetric.h"
 using namespace std;
 
-#define NOTCMT      0
-#define ISCMT       1
-#define BLOCK       2
+enum CommentedCode
+{
+    NOTCMT,
+    ISCMT,
+    BLOCK
+};
 
 namespace C_M
 {
